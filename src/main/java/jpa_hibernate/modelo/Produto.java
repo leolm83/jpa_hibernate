@@ -5,11 +5,10 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import jpa_hibernate.enums.Categoria;
@@ -29,7 +28,9 @@ public class Produto {
 	private BigDecimal preco;
 	@Column(name="data_cadastro")
 	private LocalDate dataCadastro =LocalDate.now();
-	@Enumerated(EnumType.STRING)//usa o valor em string da Enum
+	//@Enumerated(EnumType.STRING)//usa o valor em string da Enum
+	
+	@ManyToOne
 	private Categoria categoria;
 	
 	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
