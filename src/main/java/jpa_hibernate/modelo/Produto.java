@@ -1,13 +1,18 @@
 package jpa_hibernate.modelo;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import jpa_hibernate.enums.Categoria;
 
 //o hibernate por padrao consegue encontrar as classes porem na JPA é necessario incluir uma tag <class>NomeDaClasse</class>
 @Entity
@@ -22,6 +27,18 @@ public class Produto {
 	private String descricao;
 	
 	private BigDecimal preco;
+	@Column(name="data_cadastro")
+	private LocalDate dataCadastro =LocalDate.now();
+	@Enumerated(EnumType.STRING)//usa o valor em string da Enum
+	private Categoria categoria;
+	
+	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.categoria = categoria;
+	}
 
 	public Long getId() {
 		return id;
